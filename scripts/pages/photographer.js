@@ -10,8 +10,24 @@ function getPhotographerId() {
 async function getPhotographerData(prop) {
     const photographerId = getPhotographerId();
 
-    const response = await fetch("./data/photographers.json");
-    const responseData = await response.json();
+    // const response = await fetch("./data/photographers.json");
+    // const responseData = await response.json();
+
+    let responseData = {};
+    const sessionStorageData = window.sessionStorage.getItem("photographers");
+
+    if (sessionStorageData === null) {
+        const response = await fetch("./data/photographers.json");
+        responseData = await response.json();
+
+        const sessionsData = JSON.stringify(photographers); 
+        window.sessionStorage.setItem("photographers", sessionsData);
+    }
+
+    if (sessionStorageData) {
+        const sessionStorage = window.sessionStorage.getItem("photographers");
+        responseData = JSON.parse(sessionStorage);
+    }
     
     if (prop === "photographers") {
         const photographersProp = responseData.photographers;
@@ -50,6 +66,8 @@ async function displayPhotographerMedias(medias) {
         mediasSection.appendChild(mediaTemplate);
     });
 
+    likesCounter(medias[0].photographerId);
+
     return true
 }
 
@@ -66,6 +84,7 @@ function displayBottomBar(photographer, medias) {
     price.textContent = `${photographer.price} / jour`;
 
     const nbLikes = document.createElement("p");
+    nbLikes.setAttribute("id", "total-likes");
     nbLikes.textContent = getLikesSum(medias);
 
     likesDiv.appendChild(nbLikes);
@@ -82,7 +101,7 @@ async function init() {
     // Get and display medias on page load
     const medias = await getPhotographerData("media");
 
-    const mediaElements = await displayPhotographerMedias(medias);
+    displayPhotographerMedias(medias);
 
     // Listen to the filter value and display sorted media if changed
     const filterInput = document.querySelector("#media-filter");
@@ -91,6 +110,7 @@ async function init() {
     // Display user likes and price
     displayBottomBar(photographer, medias);
 
+    // Manage like count in session storage
     likesCounter(photographer.id);
 }
 

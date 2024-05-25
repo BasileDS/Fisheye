@@ -39,7 +39,21 @@ function addLike(mediaId, userId) {
     const newSessionData = JSON.stringify(photographers);
     window.sessionStorage.setItem("photographers", newSessionData);
 
-    console.log(`${media.title} has ${media["likes"]} likes`);
+    upadteCardLikesCount(mediaId, newLikes);
+    updateSumLikesCount();
+}
+
+function upadteCardLikesCount(mediaId, likesCount) {
+    const mediaLikesEl = document.querySelector(`#likes-${mediaId}`);
+    mediaLikesEl.textContent = likesCount;
+}
+
+async function updateSumLikesCount() {
+    const medias = await getPhotographerData("media");
+    const totalLikes = getLikesSum(medias)
+    const nbLikes = document.querySelector("#total-likes");
+    nbLikes.textContent = "";
+    nbLikes.textContent = totalLikes;
 }
 
 // Get the sum of all photographer media likes

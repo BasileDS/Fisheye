@@ -4,22 +4,19 @@ async function mediaFilter(medias) {
 
     switch (filterValue) {
         case "popularite":
-            const likesFilter = medias.sort((a, b) => b.likes - a.likes);
-            displayPhotographerMedias(likesFilter);
-
+            const mediasByLikes = medias.sort((a, b) => b.likes - a.likes);
+            displayPhotographerMedias(mediasByLikes);
         return true
         case "date":
-            const dateFilter = medias.sort((a, b) => {
+            const mediasByDate = medias.sort((a, b) => {
                 const aFormattedDate = new Date(a.date);
                 const bFormattedDate = new Date(b.date);
                 return bFormattedDate - aFormattedDate; });
-            displayPhotographerMedias(dateFilter);
-
+            displayPhotographerMedias(mediasByDate);
             return true
         case "titre":
-            const titleFilter = medias.sort((a, b) => a.title > b.title);
-            displayPhotographerMedias(titleFilter);
-
+            const mediasByTitles = medias.sort((a, b) => a.title > b.title);
+            displayPhotographerMedias(mediasByTitles);
             return true
         default:
             break;
