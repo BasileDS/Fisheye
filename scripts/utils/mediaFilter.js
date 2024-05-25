@@ -1,4 +1,4 @@
-function mediaFilter(medias) {
+async function mediaFilter(medias) {
     const filterInput = document.querySelector("#media-filter");
     const filterValue = filterInput.value;
 
@@ -6,18 +6,21 @@ function mediaFilter(medias) {
         case "popularite":
             const likesFilter = medias.sort((a, b) => b.likes - a.likes);
             displayPhotographerMedias(likesFilter);
-            break
+
+        return true
         case "date":
             const dateFilter = medias.sort((a, b) => {
                 const aFormattedDate = new Date(a.date);
                 const bFormattedDate = new Date(b.date);
                 return bFormattedDate - aFormattedDate; });
             displayPhotographerMedias(dateFilter);
-            break
+
+            return true
         case "titre":
             const titleFilter = medias.sort((a, b) => a.title > b.title);
             displayPhotographerMedias(titleFilter);
-            break
+
+            return true
         default:
             break;
     }

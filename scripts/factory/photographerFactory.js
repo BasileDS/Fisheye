@@ -1,5 +1,4 @@
 function photographerFactory(data, template) {
-
     switch (template) {
         case "card":
             const photographerModel = photographerCardTemplate(data);

@@ -29,7 +29,7 @@ async function getPhotographerData(prop) {
 }
 
 // Display user information in photographer header
-async function displayPhotographerHeader(photographer) {
+function displayPhotographerHeader(photographer) {
     const photographHeader = document.querySelector("#photograph-header");
     
     const photographerData = photographerFactory(photographer, "header");
@@ -38,6 +38,19 @@ async function displayPhotographerHeader(photographer) {
 
     photographHeader.prepend(photographerPresentation);
     photographHeader.appendChild(photographerPicture);
+}
+
+// Display photographer pictures and videos in media section
+async function displayPhotographerMedias(medias) {
+    const mediasSection = document.querySelector("#medias-section");
+    mediasSection.innerHTML = "";
+
+    medias.forEach(media => {
+        const mediaTemplate = mediaFactory(media);
+        mediasSection.appendChild(mediaTemplate);
+    });
+
+    return true
 }
 
 //  Get and display user price and likes
@@ -69,16 +82,15 @@ async function init() {
     // Get and display medias on page load
     const medias = await getPhotographerData("media");
 
-    mediaFilter(medias);
+    const mediaElements = await displayPhotographerMedias(medias);
+    mediaElements ? likesCounter() : console.log(mediaElements);
 
     // Listen to the filter value and display sorted media if changed
     const filterInput = document.querySelector("#media-filter");
     filterInput.addEventListener("change", () => mediaFilter(medias) );
 
     // Display user likes and price
-    displayBottomBar(photographer, medias)
-
-    likesCounter();
+    displayBottomBar(photographer, medias);
 }
 
 init();

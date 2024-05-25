@@ -4,34 +4,36 @@ function videoTemplate(data) {
     const article = document.createElement("article");
     article.setAttribute("id", id);
 
-    // Create the video thumbnail
+    const vidInfo = document.createElement("div");
+    vidInfo.classList.add("images-infos");
+
+    const pTitle = document.createElement("p");
+    pTitle.textContent = title;
+
+    // Create likes <p> and like <button> elements
+    const mediaLikes = document.createElement("div");
+    mediaLikes.classList.add("media-card-likes");
+    const pLikes = document.createElement("p");
+    pLikes.classList.add("nb-likes");
+    pLikes.textContent = parseInt(likes);
+    const likeSvg = document.createElement("img");
+    likeSvg.classList.add("heart-likes");
+    likeSvg.setAttribute("src", "./assets/icons/heart-like.svg");
+    likeSvg.setAttribute("id", `media-${id}`);
+
+    mediaLikes.appendChild(pLikes);
+    mediaLikes.appendChild(likeSvg);
+
+    vidInfo.appendChild(pTitle);
+    vidInfo.appendChild(mediaLikes);
+
+    
+    article.appendChild(vidInfo);
+
+    // Create the video thumbnail after node elements has been created to prevent likesCounter listener to miss it
     const videoUrl = (`./assets/images/medias-samples/${photographerId}/${video}`);
     createVideoThumbnail(videoUrl).then(canvas => {
-        const vidInfo = document.createElement("div");
-        vidInfo.classList.add("images-infos");
-
-        const pTitle = document.createElement("p");
-        pTitle.textContent = title;
-
-        // Create likes <p> and like <button> elements
-        const mediaLikes = document.createElement("div");
-        mediaLikes.classList.add("media-card-likes");
-        const pLikes = document.createElement("p");
-        pLikes.classList.add("nb-likes");
-        pLikes.textContent = parseInt(likes);
-        const likeSvg = document.createElement("img");
-        likeSvg.classList.add("heart-likes");
-        likeSvg.setAttribute("src", "./assets/icons/heart-like.svg");
-        likeSvg.setAttribute("id", `media-${id}`);
-
-        mediaLikes.appendChild(pLikes);
-        mediaLikes.appendChild(likeSvg);
-
-        vidInfo.appendChild(pTitle);
-        vidInfo.appendChild(mediaLikes);
-
-        article.appendChild(canvas);
-        article.appendChild(vidInfo);
+        article.prepend(canvas);
     });
 
     return article
