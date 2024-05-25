@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fisheye - photographe </title>
+    <link href="./css/style.css" rel="stylesheet" type="text/css" />
+    <link href="./css/photographer.css" rel="stylesheet" type="text/css" />
+    <meta charset="utf-8">
+    <link rel="icon" type="image/png" href="./assets/favicon.png">
+    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <header>
+      <a href="index.html" class="logo-link"><img src="./assets/images/logo.png" class="logo" alt="Fisheye Home page"/></a>
+    </header>
+    <main id="main">
+      <div class="photograph-header" id="photograph-header">
+        <button class="contact_button" id="btn-open-modal">Contactez-moi</button>
+      </div>
+      <div class="media-filters">
+        <legend>Trier par</legend>
+        <select name="filtre" class="media-filter" id="media-filter" autocomplete="off">
+          <option value="popularite" selected="selected">Popularité</option>
+          <option value="date">Date</option>
+          <option value="titre">Titre</option>
+        </select>
+      </div>
+      <div class="medias-section" id="medias-section">
+      </div>
+    </main>
+    <div id="contact_modal">
+			<div class="modal">
+				<header>
+          <h2>Contactez-moi</h2>
+          <img src="./assets/icons/close.svg" id="btn-close-modal" />
+        </header>
+				<form>
+					<div>
+						<label>Prénom</label>
+						<input />
+					</div>
+          <button class="contact_button">Envoyer</button>
+				</form>
+			</div>
+		</div>
+    <script src="./scripts/templates/photographerHeader.js"></script>
+    <script src="./scripts/templates/picture.js"></script>
+    <script src="./scripts/templates/video.js"></script>
+    <script src="./scripts/factory/mediaFactory.js"></script>
+    <script src="./scripts/pages/photographer.js"></script>
+    <script src="./scripts/utils/contactForm.js"></script>
+    <script src="./scripts/utils/mediaFilter.js"></script>
+  </body>
+</html>

@@ -1,0 +1,183 @@
+@import url("style.css");
+
+#contact_modal {
+    display: none;
+}
+
+.photograph-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--light-grey);
+    height: 300px;
+    margin: 0 100px;
+    padding: 0 70px;
+}
+
+.photograph-presentation {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+}
+
+.photograph-presentation .photographer-location {
+    font-size: 24px;
+    color: var(--secondary-contrast-color);
+}
+
+.photograph-presentation .photographer-tagline {
+    font-size: 18px;
+    color: #525252;
+}
+
+.media-filters {
+    display: flex;
+    align-items: center;
+    margin: 50px 100px;
+    gap: 20px;
+}
+
+.media-filters legend, .media-filter {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.media-filters legend {
+    color: #000000;
+}
+
+.media-filter {
+    background-color: var(--secondary-contrast-color);
+    border: none;
+    border-radius: 5px;
+    padding: 15px 20px;
+    color: #fff;
+    box-shadow: 0px 4px 4px 0px #00000040;
+
+}
+
+.medias-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 100px 100px 100px;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.medias-section article {
+    width: calc(33% - 50px);
+    overflow: hidden;
+    font-size: 24px;
+    color: var(--secondary-contrast-color);
+}
+
+.medias-section article p {
+    overflow-x: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.medias-section article .nb-likes {
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.medias-section article img, .medias-section article canvas {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.medias-section article .images-infos {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.media-card-likes {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    width: 95px;
+    gap: 12px;
+}
+
+.media-card-likes .heart-likes {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.contact_button {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    padding: 11px;
+    width: 170px;
+    height: 70px;
+    border: none;
+    background-color: #901C1C;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.user-picture {
+    width: 200px;
+    height: 200px;
+}
+
+.modal {
+    border-radius: 5px;
+    background-color: #DB8876;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 35px;
+    margin: auto;
+}
+
+.modal header {
+    justify-content: space-between;
+    width: 100%;
+}
+
+.modal header img {
+    cursor: pointer;
+}
+
+.modal header h2 {
+    font-size: 64px;
+    font-weight: normal;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+form label {
+    color: #312E2E;
+    font-size: 36px;
+}
+
+form div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: self-start;
+    margin-bottom: 26px;
+}
+
+form input {
+    width: 100%;
+    height: 68px;
+    border: none;
+    border-radius: 5px;
+}
