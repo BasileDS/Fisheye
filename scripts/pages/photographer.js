@@ -83,7 +83,6 @@ async function init() {
     const medias = await getPhotographerData("media");
 
     const mediaElements = await displayPhotographerMedias(medias);
-    mediaElements ? likesCounter() : console.log(mediaElements);
 
     // Listen to the filter value and display sorted media if changed
     const filterInput = document.querySelector("#media-filter");
@@ -91,6 +90,8 @@ async function init() {
 
     // Display user likes and price
     displayBottomBar(photographer, medias);
+
+    likesCounter(photographer.id);
 }
 
 init();

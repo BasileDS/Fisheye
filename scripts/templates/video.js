@@ -15,6 +15,7 @@ function videoTemplate(data) {
     mediaLikes.classList.add("media-card-likes");
     const pLikes = document.createElement("p");
     pLikes.classList.add("nb-likes");
+    pLikes.setAttribute("id", `likes-${id}`);
     pLikes.textContent = parseInt(likes);
     const likeSvg = document.createElement("img");
     likeSvg.classList.add("heart-likes");
