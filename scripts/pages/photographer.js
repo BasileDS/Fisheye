@@ -1,4 +1,4 @@
-// Get and return photographer's id in the url
+ // Get and return photographer's id in the url
 function getPhotographerId() {
     const params = new URL(document.location).searchParams;
     const photographerId = parseInt(params.get("id"));
@@ -28,11 +28,11 @@ async function getPhotographerData(prop) {
     }
 }
 
-// Display photographer information in photographer header
-async function displayPhotographerData(photographer) {
+// Display user information in photographer header
+async function displayPhotographerHeader(photographer) {
     const photographHeader = document.querySelector("#photograph-header");
     
-    const photographerData = getUserDataDOM(photographer);
+    const photographerData = photographerFactory(photographer, "header");
     const photographerPresentation = photographerData.presentation;
     const photographerPicture = photographerData.img;
 
@@ -40,27 +40,45 @@ async function displayPhotographerData(photographer) {
     photographHeader.appendChild(photographerPicture);
 }
 
-// Display photographer pictures and videos in media section
-async function displayPhotographerMedias(medias) {
-    const mediasSection = document.querySelector("#medias-section");
-    mediasSection.innerHTML = "";
+//  Get and display user price and likes
+function displayBottomBar(photographer, medias) {
+    const bottomBar = document.querySelector("#user-btm-bar");
+    const likesDiv = document.querySelector("#likes");
 
-    medias.forEach(media => {
-        const mediaTemplate = mediaFactory(media);
-        mediasSection.appendChild(mediaTemplate);
-    }); 
+    const heart = document.createElement("img");
+    heart.setAttribute("src", "./assets/icons/heart-like.svg");
+    heart.classList.add("likes-icon");
+
+    const price = document.createElement("p");
+    price.textContent = `${photographer.price} / jour`;
+
+    const nbLikes = document.createElement("p");
+    nbLikes.textContent = getLikesSum(medias);
+
+    likesDiv.appendChild(nbLikes);
+    likesDiv.appendChild(heart);
+
+    bottomBar.appendChild(price);
 }
 
+// Init the page 
 async function init() {
     const photographer = await getPhotographerData("photographers");
-    displayPhotographerData(photographer);
+    displayPhotographerHeader(photographer);
 
+    // Get and display medias on page load
     const medias = await getPhotographerData("media");
 
     mediaFilter(medias);
 
+    // Listen to the filter value and display sorted media if changed
     const filterInput = document.querySelector("#media-filter");
     filterInput.addEventListener("change", () => mediaFilter(medias) );
+
+    // Display user likes and price
+    displayBottomBar(photographer, medias)
+
+    likesCounter();
 }
 
 init();

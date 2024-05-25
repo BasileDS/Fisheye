@@ -8,8 +8,7 @@ async function displayData(photographers) {
     const photographersSection = document.querySelector(".photographer_section");
     
     photographers.forEach((photographer) => {
-        const photographerModel = photographerCardTemplate(photographer);
-        const userCardDOM = photographerModel.getUserCardDOM();
+        const userCardDOM = photographerFactory(photographer, "card");
         photographersSection.appendChild(userCardDOM);
     });
 }
