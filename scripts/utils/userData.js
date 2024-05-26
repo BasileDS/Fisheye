@@ -1,4 +1,4 @@
-// Take the property and returns all the data matching with the photographer id
+// Get all or part of photographer data 
 async function getPhotographerData(prop) {
     const photographerId = getPhotographerId();
 
@@ -19,6 +19,10 @@ async function getPhotographerData(prop) {
     if (sessionStorageData) {
         const sessionStorage = window.sessionStorage.getItem("photographers");
         responseData = JSON.parse(sessionStorage);
+    }
+    
+    if (prop === "all") {
+        return responseData;
     }
     
     if (prop === "photographers") {

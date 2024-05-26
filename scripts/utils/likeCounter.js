@@ -55,7 +55,6 @@ async function updateSumLikesCount() {
     nbLikes.textContent = totalLikes;
 }
 
-
 // Get the sum of all photographer media likes
 function getLikesSum(medias) {
     let totalLikes = 0;

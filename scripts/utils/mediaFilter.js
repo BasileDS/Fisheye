@@ -26,3 +26,36 @@ async function mediaFilter() {
             break;
     }
 }
+
+// Display filters on user page
+function displayMediaFilters() {
+    const legend = document.createElement("legend");
+    legend.textContent = "Trier par";
+
+    const select = document.createElement("select");
+    select.name = "filtre";
+    select.className = "media-filter";
+    select.id = "media-filter";
+    select.setAttribute("autocomplete", "off");
+
+    const options = [
+        { value: "popularite", text: "Popularité", selected: true },
+        { value: "date", text: "Date" },
+        { value: "titre", text: "Titre" }
+    ];
+
+    options.forEach(function(optionData) {
+        const option = document.createElement("option");
+        option.value = optionData.value;
+        option.textContent = optionData.text;
+        if (optionData.selected) {
+            option.selected = true;
+        }
+        select.appendChild(option);
+    });
+
+    const filterWrapper = document.querySelector("#media-filters");
+
+    filterWrapper.appendChild(legend);
+    filterWrapper.appendChild(select);
+}
