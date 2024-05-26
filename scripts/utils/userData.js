@@ -12,7 +12,7 @@ async function getPhotographerData(prop) {
         const response = await fetch("./data/photographers.json");
         responseData = await response.json();
 
-        const sessionsData = JSON.stringify(photographers); 
+        const sessionsData = JSON.stringify(responseData); 
         window.sessionStorage.setItem("photographers", sessionsData);
     }
 
