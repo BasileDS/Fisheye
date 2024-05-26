@@ -1,49 +1,3 @@
- // Get and return photographer's id in the url
-function getPhotographerId() {
-    const params = new URL(document.location).searchParams;
-    const photographerId = parseInt(params.get("id"));
-
-    return photographerId
-}
-
-// Take the property and returns all the data matching with the photographer id
-async function getPhotographerData(prop) {
-    const photographerId = getPhotographerId();
-
-    // const response = await fetch("./data/photographers.json");
-    // const responseData = await response.json();
-
-    let responseData = {};
-    const sessionStorageData = window.sessionStorage.getItem("photographers");
-
-    if (sessionStorageData === null) {
-        const response = await fetch("./data/photographers.json");
-        responseData = await response.json();
-
-        const sessionsData = JSON.stringify(photographers); 
-        window.sessionStorage.setItem("photographers", sessionsData);
-    }
-
-    if (sessionStorageData) {
-        const sessionStorage = window.sessionStorage.getItem("photographers");
-        responseData = JSON.parse(sessionStorage);
-    }
-    
-    if (prop === "photographers") {
-        const photographersProp = responseData.photographers;
-        const photographerData = photographersProp.find((photographer) => {
-            return photographer.id === photographerId });
-        return photographerData;
-    }
-    
-    if (prop === "media") {
-        const photographersMedias = responseData.media;
-        const photographerMediasData = photographersMedias.filter((photographer) => {
-            return photographer.photographerId === photographerId });
-        return photographerMediasData;
-    }
-}
-
 // Display user information in photographer header
 function displayPhotographerHeader(photographer) {
     const photographHeader = document.querySelector("#photograph-header");
@@ -66,6 +20,7 @@ async function displayPhotographerMedias(medias) {
         mediasSection.appendChild(mediaTemplate);
     });
 
+    // Manage like count in session storage
     likesCounter(medias[0].photographerId);
 
     return true
@@ -105,13 +60,10 @@ async function init() {
 
     // Listen to the filter value and display sorted media if changed
     const filterInput = document.querySelector("#media-filter");
-    filterInput.addEventListener("change", () => mediaFilter(medias) );
+    filterInput.addEventListener("change", () => mediaFilter() );
 
     // Display user likes and price
     displayBottomBar(photographer, medias);
-
-    // Manage like count in session storage
-    likesCounter(photographer.id);
 }
 
 init();

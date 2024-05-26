@@ -1,4 +1,8 @@
-async function mediaFilter(medias) {
+async function mediaFilter() {
+
+    // Get data from session storage
+    const medias = await getPhotographerData("media");
+
     const filterInput = document.querySelector("#media-filter");
     const filterValue = filterInput.value;
 
