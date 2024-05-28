@@ -1,7 +1,7 @@
 function pictureTemplate(data) {
     const { title, image, likes, photographerId, id, date } = data;
 
-    const picture = `./assets/images/medias-samples/${photographerId}/${image}`;
+    const picture = `./assets/images/medias-samples/${photographerId}/webp/${image}`;
 
     const article = document.createElement("article");
     article.setAttribute("id", id);
