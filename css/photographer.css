@@ -74,7 +74,7 @@
     row-gap: 50px;
 }
 
-.medias-section article, .lightbox-grid-el {
+.medias-section article, .lightbox-media {
     overflow: hidden;
     font-size: 24px;
     color: var(--secondary-contrast-color);
@@ -155,7 +155,7 @@
     top: 0;
     width: 100vw;
     height: 100vh;
-    background: #79797929;
+    background: #9f9f9f70;
 }
 
 .modal {
@@ -246,11 +246,11 @@ form textarea {
     height: calc(100% - 100px);
 }
 
-.lightbox .lightbox-grid-el {
+.lightbox .lightbox-controls, .lightbox .lightbox-media {
     display: grid;
 }
 
-.lightbox .lightbox-grid-el .lightbox-media-element {
+.lightbox .lightbox-media .lightbox-media-element {
     width: 100%;
     height: calc(100vh - 200px);
     object-fit: cover;

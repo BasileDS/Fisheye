@@ -25,11 +25,11 @@ header {
     justify-content: space-between;
     align-items: center;
     height: 90px;
+    margin: 0 100px;
 }
 
 h1 {
     color: var(--secondary-contrast-color);
-    margin-right: 100px;
 }
 
 p {
@@ -51,10 +51,6 @@ button, .button {
 
 .photographers-portraits {
     clip-path: circle(50% at 50% 50%);
-}
-
-.logo-link {
-    margin-left: 100px;
 }
 
 .logo-link .logo {

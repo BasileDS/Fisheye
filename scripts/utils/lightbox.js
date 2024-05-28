@@ -5,8 +5,7 @@ const leftBtn = document.querySelector(".lightbox-left-arrow");
 const rightBtn = document.querySelector(".lightbox-right-arrow");
 const closeBtn = document.querySelector(".lightbox-close-cross");
 
-const lightboxMediaDOM = document.querySelector(`.lightbox-media-element`);
-const title = document.querySelector("#lightboxMediaTitle");
+const lightboxMediaDOM = document.querySelector(".lightbox-media");
 
 let currentMediaIndex = 0;
 let currentMediaId = 0;
@@ -31,16 +30,42 @@ async function openLightbox(mediaId) {
 
 // Display photographer specific picture or video
 function displayLightboxMedia(media) {
-    console.log(media);
-
     lightboxMediaDOM.innerHTML = "";    
 
-    const mediaSrc = media.image;
     const photographerId = media.photographerId;
-    lightboxMediaDOM.setAttribute("src", `./assets/images/medias-samples/${photographerId}/${mediaSrc}`);
+
+    const isVideo = media.video ? true : false;
+
+    switch (isVideo) {
+        case true:
+            const imgSrc = media.video;
+
+            const video = document.createElement("video");
+            video.classList.add("lightbox-media-element");
+            video.setAttribute("src", `./assets/images/medias-samples/${photographerId}/${imgSrc}`);
+            video.setAttribute("autoplay", true);
+            video.setAttribute("controls", true);
+
+            lightboxMediaDOM.appendChild(video);
+            break;
     
-    const mediaTitle = media.title;
-    title.textContent = mediaTitle;
+        case false:
+            const vidSrc = media.image;
+
+            const img = document.createElement("img");
+            img.classList.add("lightbox-media-element");
+            img.setAttribute("src", `./assets/images/medias-samples/${photographerId}/${vidSrc}`);
+
+            lightboxMediaDOM.appendChild(img);
+            break;
+    
+        default:
+            break;
+    }
+
+    const mediaTitle = document.createElement("p");
+    mediaTitle.textContent = media.title;
+    lightboxMediaDOM.appendChild(mediaTitle);
 }
 
 async function nextMedia() {
