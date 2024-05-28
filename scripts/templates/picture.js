@@ -7,6 +7,7 @@ function pictureTemplate(data) {
     article.setAttribute("id", id);
 
     const pImage = document.createElement("img");
+    pImage.classList.add("media-card-thumbnail");
     pImage.setAttribute("src", picture);
 
     const imgInfo = document.createElement("div");

@@ -1,9 +1,4 @@
-@import url("style.css");
-
-#contact-modal {
-    display: none;
-}
-
+/* User header styles */
 .photograph-header {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -41,6 +36,7 @@
     height: 200px;
 }
 
+/* Filters styles */
 .media-filters {
     display: flex;
     align-items: center;
@@ -67,6 +63,7 @@
 
 }
 
+/* Media article styles */
 .medias-section {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -77,7 +74,7 @@
     row-gap: 50px;
 }
 
-.medias-section article {
+.medias-section article, .lightbox-grid-el {
     overflow: hidden;
     font-size: 24px;
     color: var(--secondary-contrast-color);
@@ -99,6 +96,7 @@
     height: 300px;
     object-fit: cover;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .medias-section article .images-infos {
@@ -121,6 +119,7 @@
     cursor: pointer;
 }
 
+/* Bottom bar elements styles */
 .user-btm-bar {
     position: fixed;
     bottom: 0px;
@@ -144,6 +143,11 @@
     width: 20px;
     height: 20px;
     margin: 5px 0 0 5px;
+}
+
+/* Modalform styles */
+#contact-modal {
+    display: none;
 }
 
 .modal-container {
@@ -217,3 +221,56 @@ form textarea {
 .modal-button {
     justify-self: start;
 }
+
+/* Lightbox styles */
+
+#media-lightbox {
+    display: none;
+}
+
+.lightbox-container {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #ffffff;
+}
+
+.lightbox {
+    display: grid;
+    grid-template-columns: 100px 1fr 100px;
+    width: calc(100% - 200px);
+    height: calc(100% - 100px);
+}
+
+.lightbox .lightbox-grid-el {
+    display: grid;
+}
+
+.lightbox .lightbox-grid-el .lightbox-media-element {
+    width: 100%;
+    height: calc(100vh - 200px);
+    object-fit: cover;
+}
+
+.lightbox-media-element, .lightbox-media-element {
+    border-radius: 5px;
+    background-color: #C4C4C4;
+}
+
+.lightbox-left-arrow, .lightbox-right-arrow, .lightbox-close-cross {
+    cursor: pointer;
+}
+
+.lightbox-left-arrow, .lightbox-right-arrow {
+    place-self: center;
+    width: 50px;
+}
+.lightbox-close-cross {
+    position: absolute;
+    width: 50px;
+    margin: 25px;
+  }

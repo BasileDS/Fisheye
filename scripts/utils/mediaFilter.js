@@ -9,19 +9,28 @@ async function mediaFilter() {
     switch (filterValue) {
         case "popularite":
             const mediasByLikes = medias.sort((a, b) => b.likes - a.likes);
+
+            setFilteredMediasToSessionStorage(mediasByLikes);
             displayPhotographerMedias(mediasByLikes);
         return true
+
         case "date":
             const mediasByDate = medias.sort((a, b) => {
                 const aFormattedDate = new Date(a.date);
                 const bFormattedDate = new Date(b.date);
                 return bFormattedDate - aFormattedDate; });
+
+            setFilteredMediasToSessionStorage(mediasByDate);    
             displayPhotographerMedias(mediasByDate);
             return true
+
         case "titre":
             const mediasByTitles = medias.sort((a, b) => a.title > b.title);
+
+            setFilteredMediasToSessionStorage(mediasByTitles);
             displayPhotographerMedias(mediasByTitles);
             return true
+            
         default:
             break;
     }

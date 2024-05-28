@@ -10,10 +10,11 @@ async function init() {
     // Display user media gallery
     const medias = await getPhotographerData("media");
     displayPhotographerMedias(medias);
+    mediaFilter();
 
     // Listen to the filter value and display sorted media if changed
     const filterInput = document.querySelector("#media-filter");
-    filterInput.addEventListener("change", () => mediaFilter() );
+    filterInput.addEventListener("change", mediaFilter);
 
     // Display user likes and price
     displayBottomBar(photographer, medias);

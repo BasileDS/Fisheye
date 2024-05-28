@@ -4,6 +4,9 @@ function videoTemplate(data) {
     const article = document.createElement("article");
     article.setAttribute("id", id);
 
+    const articleCanvas = document.createElement("div");
+    articleCanvas.classList.add("media-card-thumbnail");
+
     const vidInfo = document.createElement("div");
     vidInfo.classList.add("images-infos");
 
@@ -28,13 +31,13 @@ function videoTemplate(data) {
     vidInfo.appendChild(pTitle);
     vidInfo.appendChild(mediaLikes);
 
-    
+    article.appendChild(articleCanvas);
     article.appendChild(vidInfo);
 
     // Create the video thumbnail after node elements has been created to prevent likesCounter listener to miss it
     const videoUrl = (`./assets/images/medias-samples/${photographerId}/${video}`);
     createVideoThumbnail(videoUrl).then(canvas => {
-        article.prepend(canvas);
+        articleCanvas.prepend(canvas);
     });
 
     return article

@@ -27,15 +27,14 @@ async function getPhotographerData(prop) {
     
     if (prop === "photographers") {
         const photographersProp = responseData.photographers;
-        const photographerData = photographersProp.find((photographer) => {
-            return photographer.id === photographerId });
+        const photographerData = photographersProp.find((photographer) => 
+            photographer.id === photographerId );
         return photographerData;
     }
     
     if (prop === "media") {
         const photographersMedias = responseData.media;
-        const photographerMediasData = photographersMedias.filter((photographer) => {
-            return photographer.photographerId === photographerId });
+        const photographerMediasData = photographersMedias.filter((photographer) => photographer.photographerId === photographerId );
         return photographerMediasData;
     }
 }
@@ -59,11 +58,25 @@ function getUserMediasByUserId(id) {
 }
 
 // Get specific media from local storage using media id
-function getUserMediaByMediaId(MediaId) {
+function getUserMediaByMediaId(mediaId) {
+    const userId = getPhotographerId();  
+
     const sessionStorage = window.sessionStorage.getItem("photographers");
     const photographers = JSON.parse(sessionStorage);
     const photographersMedias = photographers.media;
-    const media = photographersMedias.filter((photographersMedias) => photographersMedias.id === MediaId);
-
+    const medias = photographersMedias.filter((photographersMedias) => photographersMedias.photographerId === userId);
+    const media = medias.filter((medias) => medias.id === parseInt(mediaId));
+    
     return media
+}
+
+function setFilteredMediasToSessionStorage(medias) {
+    const storageMedias = JSON.stringify(medias);
+    window.sessionStorage.setItem("filtered medias", storageMedias);
+}
+
+function getFilteredMediasfromSessionStorage() {
+    const fromSessionMedias = window.sessionStorage.getItem("filtered medias");
+    const medias = JSON.parse(fromSessionMedias);
+    return medias
 }
