@@ -1,15 +1,18 @@
 function photographerCardTemplate(data) {
     const { name, portrait, city, country, tagline, price, id } = data;
 
+    console.log(data);
+
     const picture = `./assets/photographers/${portrait}`;
 
     function getUserCardDOM() {
         // Init the wrapper (article) and its content
         const article = document.createElement( 'article' );
 
-        const photographerLink = document.createElement( 'div' );
+        const photographerLink = document.createElement( 'a' );
         photographerLink.classList.add("flex-col-ctr-ctr", "photographerCardLink");
         photographerLink.setAttribute("id", id);
+        photographerLink.setAttribute("href", "#");
 
         const divStatic = document.createElement( 'div' );
         divStatic.classList.add("flex-col-ctr-ctr");

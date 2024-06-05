@@ -15,17 +15,50 @@ closeBtn.addEventListener("click", closeLightbox);
 leftBtn.addEventListener("click", prevMedia);
 rightBtn.addEventListener("click", nextMedia);
 
+const lightboxNav = (e) => {
+    switch (e.key) {
+        case "Escape":
+            e.preventDefault();
+            closeLightbox();
+            break;
+            
+            case "ArrowLeft":
+            e.preventDefault();
+            prevMedia();
+            break;
+            
+            case "ArrowRight":
+            e.preventDefault();
+            nextMedia();
+            break;
+    
+        default:
+            break;
+    };
+};
+
 // Open media lightbox
 async function openLightbox(mediaId) {
-    lightboxContainer.style.display = "flex";
-    currentMediaId = parseInt(mediaId);
+    main.setAttribute("aria-hidden", "true");
+    body.classList.add("no-scroll");
+    header.setAttribute("aria-hidden", "true");
 
+    
+    lightboxContainer.style.display = "flex";
+    lightboxContainer.setAttribute("aria-hidden", "false");
+    
+    currentMediaId = parseInt(mediaId);
+    
     const medias = await getFilteredMediasfromSessionStorage();
     const isClickedMedia = (index) => index.id === parseInt(currentMediaId);
     currentMediaIndex = medias.findIndex(isClickedMedia);
     const media = medias[currentMediaIndex];
-
+    
     displayLightboxMedia(media);
+    
+    closeBtn.focus();
+
+    document.addEventListener("keydown", lightboxNav);
 }
 
 // Display photographer specific picture or video
@@ -43,6 +76,7 @@ function displayLightboxMedia(media) {
             const video = document.createElement("video");
             video.classList.add("lightbox-media-element");
             video.setAttribute("src", `./assets/images/medias-samples/${photographerId}/${imgSrc}`);
+            video.setAttribute("alt", media.title)
             video.setAttribute("autoplay", true);
             video.setAttribute("controls", true);
 
@@ -55,6 +89,7 @@ function displayLightboxMedia(media) {
             const img = document.createElement("img");
             img.classList.add("lightbox-media-element");
             img.setAttribute("src", `./assets/images/medias-samples/${photographerId}/${vidSrc}`);
+            img.setAttribute("alt", media.title);
 
             lightboxMediaDOM.appendChild(img);
             break;
@@ -96,5 +131,12 @@ async function prevMedia() {
 
 // Close media lightbox
 function closeLightbox() {
+    main.setAttribute("aria-hidden", "false");
+    header.setAttribute("aria-hidden", "false");
+    body.classList.remove("no-scroll");
+
     lightboxContainer.style.display = "none";
+    lightboxContainer.setAttribute("aria-hidden", "true");
+
+    document.removeEventListener("keydown", lightboxNav);
 }

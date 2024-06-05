@@ -4,6 +4,23 @@
     --light-grey: #FAFAFA;
 }
 
+.sr-only {
+    border: 0 !important;
+	clip: rect(1px, 1px, 1px, 1px) !important;
+	-webkit-clip-path: inset(50%) !important;
+			clip-path: inset(50%) !important;
+	height: 1px !important;
+	overflow: hidden !important;
+	padding: 0 !important;
+	position: absolute !important;
+	width: 1px !important;
+	white-space: nowrap !important;
+}
+
+.no-scroll {
+    overflow: hidden;
+}
+
 body {
     font-family: "DM Sans", sans-serif;
     font-weight: 400;
@@ -34,7 +51,7 @@ p {
     margin: 0;
 }
 
-button, .button {
+.button {
     font-size: 20px;
     font-weight: bold;
     color: white;
@@ -99,15 +116,15 @@ button, .button {
 
 .photographer_section .photographer-location {
     color: var(--secondary-contrast-color);
-    font-size: 13px;
+    font-size: 17px;
 }
 
 .photographer_section .photographer-tagline {
     color: #000000;
-    font-size: 10px;
+    font-size: 15px;
 }
 
 .photographer_section .photographer-price {
-    color: #757575;
-    font-size: 9px;
+    color: #4c4c4c;
+    font-size: 13px;
 }

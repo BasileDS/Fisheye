@@ -12,6 +12,7 @@ async function likesCounter(id) {
     // Listen to each media like heart
     for (let i = 0; i < mediasId.length; i++) {
         const mediaLikeBtns = document.querySelector(`#media-${mediasId[i]}`);
+        
         mediaLikeBtns.addEventListener("click", () => {
             addLike(mediasId[i], id);
         });

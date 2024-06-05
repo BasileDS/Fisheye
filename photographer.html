@@ -1,57 +1,77 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <title>Fisheye - photographe </title>
-    <link href="./css/style.css" rel="stylesheet" type="text/css" />
-    <link href="./css/photographer.css" rel="stylesheet" type="text/css" />
+    <link href="./css/style.css" rel="stylesheet" type="text/css">
+    <link href="./css/photographer.css" rel="stylesheet" type="text/css">
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="./assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
   </head>
   <body>
-    <header>
-      <a href="index.html" class="logo-link"><img src="./assets/images/logo.png" class="logo" alt="Fisheye Home page"/></a>
+    <header aria-label="Main header">
+      <a href="index.html" class="logo-link" aria-label="Logo to home page">
+        <img src="./assets/images/logo.png" class="logo" alt="Fisheye logo - Home page">
+      </a>
     </header>
     <main id="main">
-      <div class="photograph-header" id="photograph-header">
-        <button class="contact-button" id="btn-open-modal">Contactez-moi</button>
+      <div class="photograph-header" id="photograph-header" role="region">
+        <button class="contact-button button" id="btn-open-modal" aria-controls="contact-modal" aria-haspopup="true" aria-expanded="false" aria-label="toggle contact modal">Contactez-moi</button>
       </div>
-      <div class="media-filters" id="media-filters"></div>
-      <div class="medias-section" id="medias-section">
+      <div class="media-filters">
+        <form id="media-filters">
+        </form>
+      </div>
+      <div class="medias-section" id="medias-section" role="region">
       </div>
       <div class="user-btm-bar" id="user-btm-bar">
         <div class="btm-bar-likes" id="likes"></div>
       </div>
     </main>
-    <div class="modal-container" id="contact-modal">
+    <div class="modal-container" id="contact-modal" aria-hidden="true" role="dialog" aria-describedby="modal-header">
 			<div class="modal">
-				<header>
-          <h2>Contactez-moi</h2>
-          <img src="./assets/icons/close.svg" id="btn-close-modal" />
+				<header aria-label="Contact modal header">
+          <h2 id="modal-header">Contactez-moi</h2>
+          <button id="btn-close-modal" class="modal-button" aria-label="Modal close button">
+            <img src="./assets/icons/close.svg" alt="Modal close button" aria-controls="contact-modal" aria-haspopup="true" aria-expanded="false" aria-label="toggle contact modal" >
+          </button>
         </header>
-				<form>
-					<div>
+				<form method="post" action="validateForm.js" >
+					<div role="group">
 						<label for="firstname">Prénom</label>
-						<input type="text" id="firstname" name="firstname" class="modal-form-input" required/>
+						<input type="text" id="firstname" name="firstname" class="modal-form-input" required>
 						<label for="lastname">Nom</label>
-						<input type="text" id="lastname" name="lastname" class="modal-form-input" required/>
+						<input type="text" id="lastname" name="lastname" class="modal-form-input" required>
 						<label for="email">Email</label>
-						<input type="email" id="email" name="email" class="modal-form-input" required/>
+						<input type="email" id="email" name="email" class="modal-form-input" required>
 						<label for="message">Message</label>
 						<textarea id="message" name="message" class="modal-form-input" required></textarea>
 					</div>
-          <input type="submit" value="Envoyer" class="button modal-button" id="modal-submit-btn">
+          <input type="submit" value="Envoyer" class="button" id="modal-submit-btn">
 				</form>
 			</div>
 		</div>
-    <div class="lightbox-container" id="media-lightbox">
-      <div class="lightbox"><div class="lightbox-controls"><img src="./assets/icons/left-arrow.svg" class="lightbox-left-arrow">
+    <div class="lightbox-container" id="media-lightbox" aria-hidden="true" aria-describedby="lightbox-title" role="dialog">
+      <header id="lightbox-header" class="sr-only" aria-label="Lightbox header">
+        <h2 id="lightbox-title">Media lightbox</h2>
+      </header>
+      <div class="lightbox" aria-label="Image closeup view">
+        <div class="lightbox-controls">
+        <button class="lightbox-left-arrow modal-button" aria-label="Lightbox left button">
+          <img src="./assets/icons/left-arrow.svg" alt="Lightbox previous media button">
+        </button>
+        </div>
+        <div class="lightbox-media">
+        </div>
+        <div class="lightbox-controls">
+          <button class="lightbox-close-cross modal-button" aria-label="Lightbox close button">
+            <img src="./assets/icons/close-secondary-contrast-color.svg" alt="Lightbox close button">
+          </button>
+          <button class="lightbox-right-arrow modal-button" aria-label="Lightbox rigth button">
+            <img src="./assets/icons/right-arrow.svg" alt="Lightbox next media button">
+          </button>
+        </div>
       </div>
-      <div class="lightbox-media">
-      </div>
-      <div class="lightbox-controls">
-        <img src="./assets/icons/close-secondary-contrast-color.svg" class="lightbox-close-cross">
-        <img src="./assets/icons/right-arrow.svg" class="lightbox-right-arrow"></div>
     </div>
     <script src="./scripts/factory/photographerFactory.js"></script>
     <script src="./scripts/factory/mediaFactory.js"></script>

@@ -46,6 +46,7 @@ function displayMediaFilters() {
     select.className = "media-filter";
     select.id = "media-filter";
     select.setAttribute("autocomplete", "off");
+    select.setAttribute("aria-label", "Filter medias");
 
     const options = [
         { value: "popularite", text: "Popularité", selected: true },

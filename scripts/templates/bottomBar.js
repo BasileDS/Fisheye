@@ -5,6 +5,7 @@ function displayBottomBar(photographer, medias) {
 
     const heart = document.createElement("img");
     heart.setAttribute("src", "./assets/icons/heart-like-black.svg");
+    heart.setAttribute("alt", "Heart likes");
     heart.classList.add("likes-icon");
 
     const price = document.createElement("p");
