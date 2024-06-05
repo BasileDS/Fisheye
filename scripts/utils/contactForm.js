@@ -39,6 +39,7 @@ const modalPressEsc = (e) => {
     if (e.key === "Escape") {
         e.preventDefault();
         closeModal();
+        body.classList.remove("no-scroll");    
     }
 }
 
