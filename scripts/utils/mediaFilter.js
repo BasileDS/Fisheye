@@ -1,5 +1,5 @@
+// Filter media based on user filters choice
 async function mediaFilter() {
-
     // Get data from session storage
     const medias = await getPhotographerData("media");
 

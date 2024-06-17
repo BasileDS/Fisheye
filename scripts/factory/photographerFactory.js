@@ -1,3 +1,4 @@
+// Creates photographer card or header
 function photographerFactory(data, template) {
     switch (template) {
         case "card":

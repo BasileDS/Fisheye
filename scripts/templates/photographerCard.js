@@ -1,3 +1,4 @@
+// Create a photographer card
 function photographerCardTemplate(data) {
     const { name, portrait, city, country, tagline, price, id } = data;
 
@@ -5,6 +6,7 @@ function photographerCardTemplate(data) {
 
     const picture = `./assets/photographers/${portrait}`;
 
+    // Creates a return photographer card
     function getUserCardDOM() {
         // Init the wrapper (article) and its content
         const article = document.createElement( 'article' );

@@ -70,11 +70,13 @@ function getUserMediaByMediaId(mediaId) {
     return media
 }
 
+// Add the data to session storage
 function setFilteredMediasToSessionStorage(medias) {
     const storageMedias = JSON.stringify(medias);
     window.sessionStorage.setItem("filtered medias", storageMedias);
 }
 
+// Get data from session storage
 function getFilteredMediasfromSessionStorage() {
     const fromSessionMedias = window.sessionStorage.getItem("filtered medias");
     const medias = JSON.parse(fromSessionMedias);

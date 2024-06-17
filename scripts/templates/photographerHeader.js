@@ -1,3 +1,4 @@
+// Create a photographer header
 function photographerHeaderTemplate(data) {
     const { name, portrait, city, country, tagline, price } = data;
 

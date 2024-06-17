@@ -103,6 +103,7 @@ function displayLightboxMedia(media) {
     lightboxMediaDOM.appendChild(mediaTitle);
 }
 
+// Display next media
 async function nextMedia() {
     const medias = await getFilteredMediasfromSessionStorage();
     const isClickedMedia = (index) => index.id === parseInt(currentMediaId);
@@ -116,6 +117,7 @@ async function nextMedia() {
     displayLightboxMedia(media)
 }
 
+// Display previous media
 async function prevMedia() {
     const medias = await getFilteredMediasfromSessionStorage();
     const isClickedMedia = (index) => index.id === parseInt(currentMediaId);

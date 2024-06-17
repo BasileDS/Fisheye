@@ -1,3 +1,4 @@
+// Create a photographer video card
 function videoTemplate(data) {
     const { title, video, likes, photographerId, id } = data;
 
@@ -69,6 +70,7 @@ function createVideoThumbnail(videoUrl) {
             const canvas = document.createElement("canvas");
             canvas.width = video.videoWidth;
             canvas.height = video.videoHeight;
+            canvas.setAttribute("role", "img");
             const ctx = canvas.getContext("2d");
             ctx.drawImage(video, 0, 0);
             resolve(canvas);

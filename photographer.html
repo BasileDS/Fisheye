@@ -32,20 +32,25 @@
 			<div class="modal">
 				<header aria-label="Contact modal header">
           <h2 id="modal-header">Contactez-moi</h2>
+          <p class="success-message">Merci, nous avons bien recu votre message !</p>
           <button id="btn-close-modal" class="modal-button" aria-label="Modal close button">
             <img src="./assets/icons/close.svg" alt="Modal close button" aria-controls="contact-modal" aria-haspopup="true" aria-expanded="false" aria-label="toggle contact modal" >
           </button>
         </header>
-				<form method="post" action="validateForm.js" >
+				<form method="post" action="validateForm.js" id="modal-form" >
 					<div role="group">
 						<label for="firstname">Prénom</label>
 						<input type="text" id="firstname" name="firstname" class="modal-form-input" required>
+            <p id="firstname-verif"></p>
 						<label for="lastname">Nom</label>
 						<input type="text" id="lastname" name="lastname" class="modal-form-input" required>
+            <p id="lastname-verif"></p>
 						<label for="email">Email</label>
 						<input type="email" id="email" name="email" class="modal-form-input" required>
+            <p id="email-verif"></p>
 						<label for="message">Message</label>
 						<textarea id="message" name="message" class="modal-form-input" required></textarea>
+            <p id="message-verif"></p>
 					</div>
           <input type="submit" value="Envoyer" class="button" id="modal-submit-btn">
 				</form>

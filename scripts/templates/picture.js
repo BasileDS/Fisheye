@@ -1,3 +1,4 @@
+// Create a photographer picture card
 function pictureTemplate(data) {
     const { title, image, likes, photographerId, id } = data;
 

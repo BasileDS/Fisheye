@@ -43,11 +43,13 @@ function addLike(mediaId, userId) {
     updateSumLikesCount();
 }
 
+// Update card likes count
 function upadteCardLikesCount(mediaId, likesCount) {
     const mediaLikesEl = document.querySelector(`#likes-${mediaId}`);
     mediaLikesEl.textContent = likesCount;
 }
 
+// Update total likes count
 async function updateSumLikesCount() {
     const medias = await getPhotographerData("media");
     const totalLikes = getLikesSum(medias);

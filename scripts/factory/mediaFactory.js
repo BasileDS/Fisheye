@@ -1,3 +1,4 @@
+// Create a picture or video card
 function mediaFactory(data) {
     if (data.video) {
         const video = videoTemplate(data);

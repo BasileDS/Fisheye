@@ -1,12 +1,22 @@
-// Get and listent to modal elements
+// Get modal fomr elements
 const main = document.querySelector("main");
 const body = document.querySelector("body");
 const header = document.querySelector("header");
-const modal = document.querySelector("#contact-modal");
 
+const modal = document.querySelector("#contact-modal");
+const form = document.querySelector("#modal-form");
+const formInputs = document.querySelectorAll(".modal-form-input");
+const modalTitle = document.querySelector("#modal-header");
+const modalSuccessMessage = document.querySelector(".success-message");
 const btnOpenModal = document.querySelector("#btn-open-modal");
 const btnCloseModal = document.querySelector("#btn-close-modal");
 
+const firstnameError = document.querySelector("#firstname-verif");
+const lastnameError = document.querySelector("#lastname-verif");
+const emailError = document.querySelector("#email-verif");
+const messageError = document.querySelector("#message-verif");
+
+// Add lsiteners
 btnOpenModal.addEventListener("click", () => {
     modal.setAttribute("aria-hidden", "false");
     main.setAttribute("aria-hidden", "true");
@@ -66,10 +76,96 @@ function submitModal(event) {
     event.preventDefault();
     
     const formInputs = document.querySelectorAll(".modal-form-input");
+    
+    formValidation();
 
     const inputs = [];
     formInputs.forEach(input => {
         inputs.push(input.value);
-        console.log(input.value);
+        // console.log(input.value);
     });
+}
+
+// Form validation
+function formValidation() {
+    // define form success validation variable
+    let successScore = 0;
+    
+    // loop on inputs to check and submit if clean
+    for (let i = 0; i < formInputs.length; i++) {
+        const inputField = formInputs[i];
+        inputField.value = inputField.value.trim();
+
+        switch (inputField.id) {
+        case 'firstname':
+        case 'lastname':
+            !isEmpty(inputField) ? !checkLenght(inputField, 2) ? successScore++ : '' : '';
+            break;
+        case 'email':
+            !isEmpty(inputField) ? validateEmail(inputField) ? successScore++ : '' : '';
+            break;
+        case 'message':
+            !isEmpty(inputField) ? successScore++ : '';
+            break;
+        default:
+            break;
+        }
+      
+        if (successScore === 4) {
+            showSuccessMessage();
+            return
+        }
+    }
+}
+
+// display success message if all field are validate
+function showSuccessMessage() {
+    form.textContent = "";
+    modalTitle.textContent = "";
+    modalSuccessMessage.style.display = "block";
+}
+
+
+// check if inputs are filled
+function isEmpty(e) {
+    if (e.value === '') {
+        e.classList.add("wrong-input");
+        e.nextElementSibling.textContent = "Ce champ est obligatoire, veuillez saisir une donnée";
+        return true;
+    } else {
+        e.classList.remove("wrong-input");
+        e.nextElementSibling.textContent = "";
+        return false;
+    }
+}
+
+  // check if 'e'lement length is higher than 'n'umber
+function checkLenght(e, n) {
+    inputValue = e.value;
+    inputValueLength = inputValue.length;
+    
+    if (inputValueLength < n) {
+        e.classList.add("wrong-input");
+        e.nextElementSibling.textContent = "Veuillez saisir au moins 3 caractère";
+      return true;
+    } else {       
+        e.classList.remove("wrong-input"); 
+        e.nextElementSibling.textContent = "";
+        return false;
+    }
+}
+
+// check if the email format is valid
+function validateEmail(e) {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const result = regex.test(e.value);
+    if (!result) {
+        e.classList.add("wrong-input");
+        e.nextElementSibling.textContent = "Veuillez entrer une adresse email valide";
+      return false;
+      } else {
+        e.classList.remove("wrong-input");
+        e.nextElementSibling.textContent = "";
+        return true;
+    }
 }

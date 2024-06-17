@@ -241,6 +241,16 @@ form textarea {
     height: 170px;
 }
 
+.success-message {
+    display: none;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.wrong-input {
+    border: 2px red solid;
+}
+
 .modal-button {
     justify-self: start;
 }
